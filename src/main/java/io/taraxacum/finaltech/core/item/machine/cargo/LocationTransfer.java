@@ -1,5 +1,6 @@
 package io.taraxacum.finaltech.core.item.machine.cargo;
 
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -122,7 +123,7 @@ public class LocationTransfer extends AbstractCargo implements RecipeItem {
                 locationList.add(LocationUtil.getCenterLocation(block));
                 locationList.add(LocationUtil.getCenterLocation(targetBlock));
                 final List<Location> finalLocationList = positive ? locationList : JavaUtil.reserve(locationList);
-                javaPlugin.getServer().getScheduler().runTaskAsynchronously(javaPlugin, () -> ParticleUtil.drawLineByDistance(javaPlugin, Particle.CRIT_MAGIC, this.particleInterval * Slimefun.getTickerTask().getTickRate() * 50L, this.particleDistance, finalLocationList));
+                javaPlugin.getServer().getScheduler().runTaskAsynchronously(javaPlugin, () -> ParticleUtil.drawLineByDistance(javaPlugin, VersionedParticle.ENCHANTED_HIT, this.particleInterval * Slimefun.getTickerTask().getTickRate() * 50L, this.particleDistance, finalLocationList));
             }
         }
 

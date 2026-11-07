@@ -1,5 +1,7 @@
 package io.taraxacum.finaltech.core.patch;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -96,7 +98,11 @@ public class EnergyRegulatorBlockTicker extends BlockTicker implements MenuUpdat
             }
         } else {
             energyNetwork.markDirty(location);
-            energyNetwork.tick(block);
+            // 2025.1 起 EnergyNet.tick 需要 SlimefunBlockData（xzavier0722 数据库存储），无数据时只标脏跳过本刻
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+            if (blockData != null) {
+                energyNetwork.tick(block, blockData);
+            }
         }
     }
 }

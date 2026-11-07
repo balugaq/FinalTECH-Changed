@@ -1,5 +1,6 @@
 package io.taraxacum.finaltech.core.item.machine.cargo;
 
+import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -393,13 +394,13 @@ public class AdvancedMeshTransfer extends AbstractCargo implements RecipeItem {
             particleLocationList.add(LocationUtil.getCenterLocation(result));
             if (drawParticle && FinalTechChanged.getSlimefunTickCount() % this.particleInterval == 0) {
                 JavaPlugin javaPlugin = this.getAddon().getJavaPlugin();
-                javaPlugin.getServer().getScheduler().runTaskAsynchronously(javaPlugin, () -> ParticleUtil.drawLineByDistance(javaPlugin, Particle.CRIT_MAGIC, this.particleInterval * Slimefun.getTickerTask().getTickRate() * 50L / particleLocationList.size(), this.particleDistance, particleLocationList));
+                javaPlugin.getServer().getScheduler().runTaskAsynchronously(javaPlugin, () -> ParticleUtil.drawLineByDistance(javaPlugin, VersionedParticle.ENCHANTED_HIT, this.particleInterval * Slimefun.getTickerTask().getTickRate() * 50L / particleLocationList.size(), this.particleDistance, particleLocationList));
             }
             return result;
         }
         while (true) {
             particleLocationList.add(LocationUtil.getCenterLocation(result));
-            if (result.getType() == Material.CHAIN) {
+            if (result.getType() == Material.IRON_CHAIN) {
                 result = result.getRelative(blockFace);
                 continue;
             }
@@ -411,7 +412,7 @@ public class AdvancedMeshTransfer extends AbstractCargo implements RecipeItem {
         }
         if (drawParticle && FinalTechChanged.getSlimefunTickCount() % this.particleInterval == 0) {
             JavaPlugin javaPlugin = this.getAddon().getJavaPlugin();
-            javaPlugin.getServer().getScheduler().runTaskAsynchronously(javaPlugin, () -> ParticleUtil.drawLineByDistance(javaPlugin, Particle.CRIT_MAGIC, this.particleInterval * Slimefun.getTickerTask().getTickRate() * 50L / particleLocationList.size(), this.particleDistance, particleLocationList));
+            javaPlugin.getServer().getScheduler().runTaskAsynchronously(javaPlugin, () -> ParticleUtil.drawLineByDistance(javaPlugin, VersionedParticle.ENCHANTED_HIT, this.particleInterval * Slimefun.getTickerTask().getTickRate() * 50L / particleLocationList.size(), this.particleDistance, particleLocationList));
         }
         return result;
     }

@@ -1,0 +1,28 @@
+# Gradle Version Catalog
+# 原版本来自 pom.xml（Maven 迁移 Gradle 前的坐标），升级前先在这里记录原值。
+
+[versions]
+# Core
+# 原 Maven 迁移时为 spigot-api 1.19.3-R0.1-SNAPSHOT；2026-11-07 主人指定升级 paper-api 1.21.11
+paper-api = "1.21.11-R0.1-SNAPSHOT"
+# 原 RC-33（com.github.Slimefun）；2026-11-07 升级为简中版 2025.1
+slimefun4 = "2025.1"
+
+# Tools etc.
+bstats = "3.0.0"
+
+# Plugins
+shadow = "9.6.1"
+run-paper = "3.1.0"
+
+[libraries]
+# Core
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
+slimefun4 = { module = "com.github.SlimefunGuguProject:Slimefun4", version.ref = "slimefun4" }
+
+# Tools etc.
+bstats = { module = "org.bstats:bstats-bukkit", version.ref = "bstats" }
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+run-paper = { id = "xyz.jpenilla.run-paper", version.ref = "run-paper" }

@@ -7,7 +7,7 @@ description: About making the world faster
 main: io.taraxacum.finaltech.FinalTechChanged
 
 
-version: ${project.version}
+version: ${version}
 
 api-version: 1.17
 

@@ -11,3 +11,10 @@
 .classpath
 .project
 dependency-reduced-pom.xml
+.workbuddy/
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!lib/*.jar
+run/
+server/

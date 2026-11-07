@@ -17,7 +17,6 @@ import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -452,43 +451,17 @@ public class FinalTechChanged extends JavaPlugin implements SlimefunAddon {
         if (this.bukkitTask != null) {
             this.bukkitTask.cancel();
         }
-        BlockStorage.saveChunks();
+        // 2025.1 起 Slimefun4 使用数据库存储并自动保存，原 BlockStorage.saveChunks()/storage.save() 已移除且无替代 API
         try {
             FinalTechChanged.logger().info("Waiting all task to end.(" + FinalTechChanged.getLocationRunnableFactory().taskSize() + ")");
             FinalTechChanged.getLocationRunnableFactory().waitAllTask();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-        } finally {
-            BlockStorage.saveChunks();
-            try {
-                for (World world : Bukkit.getWorlds()) {
-                    BlockStorage storage = BlockStorage.getStorage(world);
-                    if (storage != null) {
-                        storage.save();
-                    }
-                }
-                BlockStorage.saveChunks();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         try {
             FinalTechChanged.getEntityRunnableFactory().waitAllTask();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-        } finally {
-            BlockStorage.saveChunks();
-            try {
-                for (World world : Bukkit.getWorlds()) {
-                    BlockStorage storage = BlockStorage.getStorage(world);
-                    if (storage != null) {
-                        storage.save();
-                    }
-                }
-                BlockStorage.saveChunks();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 

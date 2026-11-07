@@ -119,7 +119,7 @@ public class AreaAccessorMenu extends AbstractClickerMenu {
                 tempLocation.setY(y);
                 for (int z = minZ; z <= maxZ; z++) {
                     tempLocation.setZ(z);
-                    if (BlockStorage.hasBlockInfo(tempLocation) && storage.hasInventory(tempLocation)) {
+                    if (BlockStorage.hasBlockInfo(tempLocation) && storage.hasInventory(tempLocation.getBlock())) {
                         int distance = Math.abs(tempLocation.getBlockX() - location.getBlockX()) + Math.abs(tempLocation.getBlockY() - location.getBlockY()) + Math.abs(tempLocation.getBlockZ() - location.getBlockZ());
                         List<Location> locationList = distanceLocationMap.computeIfAbsent(distance, d -> new ArrayList<>(d * d * 4 + 2));
                         locationList.add(tempLocation.clone());
